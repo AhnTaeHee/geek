@@ -16,7 +16,8 @@ public class CustomMvcConfigurer extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		
+		registry.addResourceHandler("/resources/").addResourceLocations("/resources/**");
+		registry.addResourceHandler("/*.html").addResourceLocations("/*.html");
 	}
 	
 	@Override
@@ -25,7 +26,8 @@ public class CustomMvcConfigurer extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(loggingInterceptor)
 				.addPathPatterns("/**")
 				.excludePathPatterns("/js/**")
-				.excludePathPatterns("/css/**");
+				.excludePathPatterns("/css/**")
+				.excludePathPatterns("*/*.html");
 		
 		super.addInterceptors(registry);
 	}

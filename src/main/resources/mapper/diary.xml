@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "diary">
+
+	<select id="selectTotalCount" resultType="int">
+		select 
+			count(*) 
+		from diary
+	</select>
+	
+	<select id="read" resultType = "net.pinnode.study.mvc.sample.dto.Diary">
+		select 
+			num, content, diary_date
+		from
+			diary
+		where num = #{num}
+	</select>
+	
+	<insert id="write" parameterType="net.pinnode.study.mvc.sample.dto.Diary">
+	
+		insert into diary (num,id,content,diary_date,write_date)
+			values(#{num},#{id},#{content},#{diary_date},now())
+	
+	</insert>
+	
+	<update id="update"  parameterType="net.pinnode.study.mvc.sample.dto.Diary">
+	
+		update diary set content =#{content}, diary_date =#{diary_date}
+		where num =#{num}
+	</update>
+	
+	<select id = "list" resultType = "net.pinnode.study.mvc.sample.dto.Diary">
+	<![CDATA[
+		select 
+			num, content, diary_date
+		from 
+			diary
+		where num > 0
+		order by num desc
+	]]>
+
+	</select> 
+</mapper>

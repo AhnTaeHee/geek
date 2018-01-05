@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.pinnode.study.mvc.sample.service.ArticleService;
+import net.pinnode.study.mvc.sample.service.DiaryService;
 
 @Controller
 public class SampleController {
@@ -20,7 +21,7 @@ public class SampleController {
 	private Log log = LogFactory.getLog(SampleController.class);
 	
 	@Autowired
-	private ArticleService articleService;
+	private DiaryService diaryService;
 	
 	@RequestMapping("/sample")
 	public String sample(HttpServletRequest requset,
@@ -32,8 +33,9 @@ public class SampleController {
 		LocalDateTime currentTime = LocalDateTime.now();
 		
 		model.addAttribute("currentTime", currentTime.toString());
-		model.addAttribute("totalCount", articleService.getTotalCount());
+		model.addAttribute("totalCount", diaryService.getTotalCount());
 		
+		System.out.println(diaryService.getTotalCount());
 		return "sample";
 	}
 }

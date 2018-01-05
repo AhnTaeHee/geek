@@ -14,6 +14,6 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public int getTotalCount() throws Exception {
 		
-		return articleDao.selectTotalCount();
+		return articleDao.selectTotalCountt();
 	}
 }
